@@ -15,8 +15,8 @@ dirHome = () => {
 
 };
  
-createAccount = () => {
-
+formCreateAccount = () => {
+    createAccountBox.hidden = false;
 };
 
 myNotes = () => {
