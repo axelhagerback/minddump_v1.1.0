@@ -1,1 +1,8 @@
-console.log('App working');
+login = () => {
+
+};
+
+
+createAccount = () => {
+
+};
