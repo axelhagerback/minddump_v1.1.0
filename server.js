@@ -18,7 +18,6 @@ server.get('/', (req, res) => {
 server.get('/home', (req, res) => {
 
     fs.readFile('home.html', 'utf-8', (err, data) => {
-        console.log(data);
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         res.end();
