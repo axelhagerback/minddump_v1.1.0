@@ -1,5 +1,22 @@
+    <div id="navbar">
 
-    <form method="post">
-        <textarea name="post" id="post" cols="30" rows="30"></textarea>
+        <nav class="navbar navbar-light bg-light">
+
+            <a class="navbar-brand" onclick="console.log('hi');">
+                <img src="icons/journal-text.svg" alt="journal icon">
+                Write
+            </a>
+            <a class="navbar-brand" onclick="console.log('hi');">
+                <img src="icons/archive.svg" alt="archive icon">
+                My Notes
+            </a>
+        
+        </nav>
+
+    </div>
+
+
+    <form method="post" onload="buildNavbar()">
+        <textarea name="post" id="post" cols="30" rows="10"></textarea>
         <button type="button">Save</button>
     </form>
