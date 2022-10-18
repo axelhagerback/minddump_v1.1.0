@@ -12,16 +12,18 @@
     <h1>MIND DUMP</h1>
     
     <div id="loginBox">
+       
         <form method="post">
             <label for="Email">Email:</label>
-            <input type="email" name="Email" autofocus>
+            <input type="email" name="Email" id="email" autofocus>
 
             <label for="Password">Password:</label>
-            <input type="password" name="Email">
-
-            <button type="button" onclick="login()">Log in</button>
+            <input type="password" name="Password" id="password">
+     
+            <div id="formBtns">
+            <button type="button" id="loginBtn" onclick="login()">Log in</button>
             <button type="button" onclick="createAccount()">Create account</button>
-
+            </div>
         </form>
     </div>
 </body>
