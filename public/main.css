@@ -54,3 +54,11 @@ h1 {
     /* Radius based on 25px. 25/234.4  and   25/456 */
     border-radius: 10.6% / 5.5%;
 }
+
+#navbar {
+    background-color: #1D5283;
+}
+
+.navbar a {
+    color: black;
+}
