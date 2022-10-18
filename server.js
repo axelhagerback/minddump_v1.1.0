@@ -8,11 +8,22 @@ server.use(express.static('public'));
 server.use(bodyparser.urlencoded({extended: true}));
 
 server.get('/', (req, res) => {
-    fs.readFile('public/index.html', (err, data) => {
-        res.writeHead(200, ('Content-Type', 'text/html'));
+    fs.readFile('index.html','utf-8', (err, data) => {
+        res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         res.end();
     });
+}); 
+
+server.get('/home', (req, res) => {
+
+    fs.readFile('home.html', 'utf-8', (err, data) => {
+        console.log(data);
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        res.end();
+    });
+
 });
 
 
