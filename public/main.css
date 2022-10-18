@@ -9,10 +9,10 @@ body {
 h1 {
     align-items: center;
     text-align: center;
+    margin: 10%;
 }
 
 #loginBox {
-    display: grid;
     padding: 3%;
     background-color: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -21,13 +21,20 @@ h1 {
     margin: 0 auto;
 }
 
+#formInputs {
+    display: grid;
+    padding: 3%;
+}
+
+#formInputs input {
+    margin-bottom: 5%;
+}
 
 #formBtns {
     display: grid;
     width: 60%;
     margin: 0 auto;
     gap: 20%;
-    margin-top: 5%;
     margin-bottom: 5%;
 }
 
