@@ -1,11 +1,10 @@
-login = () => {
+dirHome = () => {
 
     const XHR = new XMLHttpRequest(); 
 
     XHR.onload = () => {
 
         const divContent = document.getElementById('app');
-
         divContent.innerHTML = XHR.responseText;
 
     }
@@ -19,6 +18,23 @@ login = () => {
 createAccount = () => {
 
 };
+
+myNotes = () => {
+
+    const XHR = new XMLHttpRequest();
+
+    XHR.onload = () => {
+
+        const divContent = document.getElementById('app');
+        divContent.innerHTML = XHR.responseText;
+
+    }
+
+    XHR.open('GET', '/myNotes');
+    XHR.send();
+
+}
+
 
 /*buildNavbar = () => {
 

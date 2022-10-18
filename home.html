@@ -2,11 +2,11 @@
 
         <nav class="navbar navbar-light bg-light">
 
-            <a class="navbar-brand" onclick="console.log('hi');">
+            <a class="navbar-brand" onclick="dirHome()">
                 <img src="icons/journal-text.svg" alt="journal icon">
                 Write
             </a>
-            <a class="navbar-brand" onclick="console.log('hi');">
+            <a class="navbar-brand" onclick="myNotes()">
                 <img src="icons/archive.svg" alt="archive icon">
                 My Notes
             </a>
@@ -16,7 +16,7 @@
     </div>
 
 
-    <form method="post" onload="buildNavbar()">
+    <form method="post">
         <textarea name="post" id="post" cols="30" rows="10"></textarea>
         <button type="button">Save</button>
     </form>
