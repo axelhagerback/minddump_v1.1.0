@@ -14,5 +14,10 @@ h1 {
     border-radius: 10px;
     width: 80%;
     margin: 0 auto;
-    
-};
+}
+
+
+#post {
+    margin: 0 auto;
+    background-color: firebrick;
+}
