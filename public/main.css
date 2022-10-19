@@ -99,6 +99,18 @@ h1 {
 }
 
 
+/* User notes */
+
+#userNotes {
+    margin: 0 auto;
+    margin-top: 5%;
+    width: 80%;
+}
+
+#userNote {
+    display: block;
+    margin: 0 auto;
+}
 
 /* Navbar */
 
