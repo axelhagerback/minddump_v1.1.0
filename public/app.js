@@ -19,6 +19,10 @@ formCreateAccount = () => {
     createAccountBox.hidden = false;
 };
 
+createAccount = () => {
+    createAccountBox.hidden = true;
+};
+
 myNotes = () => {
 
     const XHR = new XMLHttpRequest();
@@ -33,7 +37,24 @@ myNotes = () => {
     XHR.open('GET', '/myNotes');
     XHR.send();
 
-}
+};
+
+
+
+
+logout = () => {
+    const XHR = new XMLHttpRequest();
+
+    XHR.onload = () => {
+
+        const divContent = document.getElementById('app');
+        divContent.innerHTML = XHR.responseText;
+
+    }
+
+    XHR.open('GET', '/');
+    XHR.send();
+};
 
 
 /*buildNavbar = () => {

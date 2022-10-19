@@ -4,7 +4,7 @@ body {
 
 
 
-/* log in */
+/* Log in */
 
 h1 {
     align-items: center;
@@ -43,7 +43,7 @@ h1 {
     border: none;
 }
 
-/* create account */
+/* Create account */
 
 #createAccountBox {
     padding: 3%;
@@ -53,7 +53,6 @@ h1 {
     width: 80%;
     margin: 0 auto;
     margin-top: 5%;
-    margin-bottom: 5%;
 }
 
 
