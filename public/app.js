@@ -64,17 +64,24 @@ buildNotes = () => {
     
     const userNotes = document.getElementById('userNotes');
     const indNote = document.getElementById('note');
-    userNotes.innerHTML = '';
-    XHR.onload = () => {
     
+
+    XHR.onload = () => {
+       
+        
         var Notes = JSON.parse(XHR.responseText);
-        indNote.innerHTML = '';
+        userNotes.innerHTML = '';
+
         Notes.forEach(note => {
             const textarea = document.createElement('textarea');
             textarea.setAttribute('class', 'userNote');
             textarea.innerHTML = (`Title: ${note.Title} || Note: ${note.Note} || Date: ${note.Date}`);
             userNotes.appendChild(textarea);
             textarea.appendChild(indNote);
+            /*const editbtn = document.createElement('button');
+            editbtn.innerHTML = 'Edit';
+            editbtn.setAttribute('class', 'editbtn');
+            userNotes.appendChild(editbtn);*/
         });
 
     };

@@ -73,6 +73,7 @@ var notesArray = [];
 
 
 server.get('/notes', (req, res) => {
+    notesArray = [];
 
     baseNotes('Notes').select({
         view: 'Grid view'
