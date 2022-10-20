@@ -2,12 +2,13 @@ const express = require('express');
 const server = express();
 const router = express.Router();
 const fs = require('fs');
-
-const userController = require('./controllers/userController');
-const dataController = require('./controllers/dataController');
-
-
+require('dotenv').config()
 const Airtable = require('airtable');
+
+
+var baseNotes = new Airtable({apiKey: process.env.API_KEY}).base('appe1p4d3ipTDbCef');
+var baseUsers = new Airtable({apiKey: process.env.API_KEY}).base('app3AWTTb59zksQDR');
+
 
 server.use(express.static('public'));
 
@@ -43,16 +44,30 @@ server.get('/myNotes', (req, res) => {
 
 server.post('/addUser', (req, res) => {
 
-    var userLoginInfo = [];
+    var userLoginInfo = req.body;
+    //console.log(process.env.API_KEY);
 
-    userLoginInfo = req.body;
-  
-    console.log(userLoginInfo);
+    baseUsers('users').create([
+
+        {
+            "fields" : {
+                "Email": userLoginInfo.Email,
+                "Password": userLoginInfo.Password
+            }
+        }
+
+    ], function(err, records) {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        records.forEach(function (record) {
+            console.log(record.getId());
+        })
+    })
 
 });
 
-
-var baseNotes = new Airtable({apiKey: 'keyqkD60p503sH4SW'}).base('appe1p4d3ipTDbCef');
 
 //skapa global array
 //skapa objekt för varje note med all information
