@@ -86,6 +86,8 @@ h1 {
     border-color: black;
     border-radius: 20px;
     padding: 4%;
+    resize: both;
+
 }
 
 #save {
@@ -119,6 +121,23 @@ h1 {
     margin: 0 auto;
 }
 
+.userNote {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    resize:none;
+    width: 75%;
+    height: 75%;
+
+}
+
+.editbtn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+   ;
+}
+
 /* Navbar */
 
 #navbar {
@@ -129,3 +148,4 @@ h1 {
     color: black;
 
 }
+

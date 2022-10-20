@@ -75,6 +75,10 @@ buildNotes = () => {
             textarea.innerHTML = (`Title: ${note.Title} || Note: ${note.Note} || Date: ${note.Date}`);
             userNotes.appendChild(textarea);
             textarea.appendChild(indNote);
+            /*const editbtn = document.createElement('button');
+            editbtn.innerHTML = 'Edit';
+            editbtn.setAttribute('class', 'editbtn');
+            userNotes.appendChild(editbtn);*/
         });
 
     };
