@@ -20,24 +20,24 @@ formCreateAccount = () => {
 };
 
 createAccount = () => {
-    var userInfo = [];
+    var userInfo;
 
     var email = document.getElementById('userEmail').value;
     var password = document.getElementById('userPassword').value;
 
-    var infoOrder = {email: email, password: password};
-    userInfo.push(infoOrder);
+    var infoOrder = {Email: email, Password: password};
+    userInfo = infoOrder;
 
     createAccountBox.hidden = true;
-
-    console.log(JSON.stringify(userInfo));
-
 
     const XHR = new XMLHttpRequest();
 
     XHR.open('POST', '/addUser');
     XHR.setRequestHeader('Content-type', 'application/json')
     XHR.send(JSON.stringify(userInfo));
+
+    document.getElementById('userEmail').value = '';
+    document.getElementById('userPassword').value = '';
 };
 
 myNotes = () => {
@@ -64,11 +64,14 @@ buildNotes = () => {
     
     const userNotes = document.getElementById('userNotes');
     const indNote = document.getElementById('note');
-    userNotes.innerHTML = '';
-    XHR.onload = () => {
     
+
+    XHR.onload = () => {
+       
+        
         var Notes = JSON.parse(XHR.responseText);
-        indNote.innerHTML = '';
+        userNotes.innerHTML = '';
+
         Notes.forEach(note => {
             const textarea = document.createElement('textarea');
             textarea.setAttribute('class', 'userNote');
