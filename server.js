@@ -1,11 +1,15 @@
 const express = require('express');
 const server = express();
+const router = express.Router();
 const fs = require('fs');
 const bodyparser = require('body-parser');
+const userController = require('./controllers/userController');
+const dataController = require('./controllers/dataController');
+
 
 server.use(express.static('public'));
 
-server.use(bodyparser.urlencoded({extended: true}));
+server.use(express.json());
 
 server.get('/', (req, res) => {
     fs.readFile('index.html','utf-8', (err, data) => {
@@ -32,6 +36,16 @@ server.get('/myNotes', (req, res) => {
         res.write(data);
         res.end();
     });
+
+});
+
+server.post('/addUser', (req, res) => {
+
+    var userLoginInfo = [];
+
+    userLoginInfo = req.body;
+  
+    console.log(userLoginInfo);
 
 });
 
