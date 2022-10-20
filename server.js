@@ -2,6 +2,7 @@ const express = require('express');
 const server = express();
 const fs = require('fs');
 const bodyparser = require('body-parser');
+const Airtable = require('airtable');
 
 server.use(express.static('public'));
 
@@ -34,6 +35,32 @@ server.get('/myNotes', (req, res) => {
     });
 
 });
+
+
+var baseNotes = new Airtable({apiKey: 'keyqkD60p503sH4SW'}).base('appe1p4d3ipTDbCef');
+
+//skapa global array
+//skapa objekt för varje note med all information
+//send array
+var notesArray = [];
+
+
+server.get('/notes', (req, res) => {
+
+    baseNotes('Notes').select({
+        view: 'Grid view'
+    }).firstPage((err, records) => {
+        if (err) { console.error(err); return; }
+            records.forEach((record) => {
+
+            var note = {UserId: record.get('UserId'), Title: record.get('Title'), Note: record.get('Note'), Date: record.get('Date')};
+            notesArray.push(note);
+        });
+
+        res.send(notesArray);
+    });
+});
+
 
 
 server.listen(8080);

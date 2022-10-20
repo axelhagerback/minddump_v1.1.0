@@ -31,7 +31,7 @@ myNotes = () => {
 
         const divContent = document.getElementById('app');
         divContent.innerHTML = XHR.responseText;
-
+        buildNotes();
     }
 
     XHR.open('GET', '/myNotes');
@@ -39,7 +39,31 @@ myNotes = () => {
 
 };
 
+buildNotes = () => {
+    const XHR = new XMLHttpRequest();
 
+
+    //skapa variabel med responsetext
+    
+    const userNotes = document.getElementById('userNotes');
+    const indNote = document.getElementById('note');
+    userNotes.innerHTML = '';
+    XHR.onload = () => {
+    
+        var Notes = JSON.parse(XHR.responseText);
+        indNote.innerHTML = '';
+        Notes.forEach(note => {
+            const textarea = document.createElement('textarea');
+            textarea.setAttribute('class', 'userNote');
+            textarea.innerHTML = (`Title: ${note.Title} || Note: ${note.Note} || Date: ${note.Date}`);
+            userNotes.appendChild(textarea);
+            textarea.appendChild(indNote);
+        });
+
+    };
+    XHR.open('GET', '/notes');
+    XHR.send();
+};
 
 
 logout = () => {
