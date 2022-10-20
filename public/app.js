@@ -64,11 +64,14 @@ buildNotes = () => {
     
     const userNotes = document.getElementById('userNotes');
     const indNote = document.getElementById('note');
-    userNotes.innerHTML = '';
-    XHR.onload = () => {
     
+
+    XHR.onload = () => {
+       
+        
         var Notes = JSON.parse(XHR.responseText);
-        indNote.innerHTML = '';
+        userNotes.innerHTML = '';
+
         Notes.forEach(note => {
             const textarea = document.createElement('textarea');
             textarea.setAttribute('class', 'userNote');
