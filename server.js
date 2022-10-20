@@ -4,6 +4,7 @@ const router = express.Router();
 const fs = require('fs');
 require('dotenv').config()
 const Airtable = require('airtable');
+const bcrypt = require('bcrypt');
 
 
 var baseNotes = new Airtable({apiKey: process.env.API_KEY}).base('appe1p4d3ipTDbCef');
@@ -45,30 +46,33 @@ server.get('/myNotes', (req, res) => {
 server.post('/addUser', (req, res) => {
 
     var userLoginInfo = req.body;
-    //console.log(process.env.API_KEY);
-
-    baseUsers('users').create([
-
-        {
-            "fields" : {
-                "Email": userLoginInfo.Email,
-                "Password": userLoginInfo.Password
-            }
-        }
-
-    ], function(err, records) {
+    
+    bcrypt.hash(userLoginInfo.Password, 10, (err, hash) => {
         if (err) {
             console.error(err);
             return;
-        }
-    })
+        };
+
+        baseUsers('users').create([
+
+            {
+                "fields" : {
+                    "Email": userLoginInfo.Email,
+                    "Password": hash
+                }
+            }
+    
+        ], function(err, records) {
+            if (err) {
+                console.error(err);
+                return;
+            };
+        });
+        
+    });
 
 });
 
-
-//skapa global array
-//skapa objekt för varje note med all information
-//send array
 var notesArray = [];
 
 
@@ -93,4 +97,3 @@ server.get('/notes', (req, res) => {
 
 server.listen(8080);
 console.log('Server is running');
-
