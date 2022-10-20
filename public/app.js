@@ -63,7 +63,7 @@ buildNotes = () => {
     //skapa variabel med responsetext
     
     const userNotes = document.getElementById('userNotes');
-    const indNote = document.getElementById('note');
+    //const indNote = document.getElementById('note');
     
 
     XHR.onload = () => {
@@ -73,11 +73,25 @@ buildNotes = () => {
         userNotes.innerHTML = '';
 
         Notes.forEach(note => {
+            const noteDiv = document.createElement('div');
+            const noteHeader = document.createElement('textarea');
             const textarea = document.createElement('textarea');
+            const noteFooter = document.createElement('textarea');
+
+            noteDiv.setAttribute('class', 'noteDiv');
+            noteHeader.setAttribute('class', 'noteHeader');
             textarea.setAttribute('class', 'userNote');
-            textarea.innerHTML = (`Title: ${note.Title} || Note: ${note.Note} || Date: ${note.Date}`);
-            userNotes.appendChild(textarea);
-            textarea.appendChild(indNote);
+            noteFooter.setAttribute('class', 'noteFooter');
+
+            noteHeader.innerHTML = `${note.Title}`;
+            textarea.innerHTML = `${note.Note}`;
+            noteFooter.innerHTML = `${note.Date}`;
+
+            noteDiv.append(noteHeader);
+            noteDiv.append(textarea);
+            noteDiv.append(noteFooter);
+
+            userNotes.append(noteDiv);
             /*const editbtn = document.createElement('button');
             editbtn.innerHTML = 'Edit';
             editbtn.setAttribute('class', 'editbtn');
