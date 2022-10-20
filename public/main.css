@@ -96,8 +96,15 @@ h1 {
     margin: 0 auto;
     width: 80%;
     margin-top: 5%;
+    background-color: #FFFFFF;
+    transition: background-color 1s;
 }
 
+#save:focus,
+#save:active {
+    background-color: rgb(0, 212, 0);
+    transition: none;
+}
 
 /* User notes */
 
@@ -115,7 +122,7 @@ h1 {
 /* Navbar */
 
 #navbar {
-    background-color: #1D5283;
+    background-color: #e97a4e;
 }
 
 .navbar a {
