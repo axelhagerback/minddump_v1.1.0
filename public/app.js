@@ -86,31 +86,37 @@ buildNotes = () => {
 
         Notes.forEach(note => {
             const noteDiv = document.createElement('div');
-            const noteHeader = document.createElement('textarea');
-            const textarea = document.createElement('textarea');
-            const noteFooter = document.createElement('textarea');
+            const noteHeader = document.createElement('div');
+            const noteMain = document.createElement('div');
+            const noteFooter = document.createElement('div');
+            const editbtn = document.createElement('button');
+            const delbtn = document.createElement('button');
+
 
             noteDiv.setAttribute('class', 'noteDiv');
             noteHeader.setAttribute('class', 'noteHeader');
-            textarea.setAttribute('class', 'userNote');
+            noteMain.setAttribute('class', 'userNote');
             noteFooter.setAttribute('class', 'noteFooter');
+            editbtn.setAttribute('class', 'editbtn');
+            delbtn.setAttribute('class', 'delbtn');
 
             noteHeader.innerHTML = `${note.Title}`;
-            textarea.innerHTML = `${note.Note}`;
+            noteMain.innerHTML = `${note.Note}`;
             noteFooter.innerHTML = `${note.Date}`;
+            editbtn.innerHTML = 'Edit';
+            delbtn.innerHTML = 'Delete';
 
             noteDiv.append(noteHeader);
-            noteDiv.append(textarea);
+            noteDiv.append(noteMain);
             noteDiv.append(noteFooter);
-
+            noteFooter.append(editbtn);
             userNotes.append(noteDiv);
-            /*const editbtn = document.createElement('button');
-            editbtn.innerHTML = 'Edit';
-            editbtn.setAttribute('class', 'editbtn');
-            userNotes.appendChild(editbtn);*/
+            noteFooter.append(delbtn);
         });
-
+        
     };
+
+    
     XHR.open('GET', '/notes');
     XHR.send();
 };

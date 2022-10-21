@@ -99,22 +99,26 @@ h1 {
     display: block;
     margin: 0 auto;
     margin-top: 5%;
-    width: 70%;
+    width: 60%;
     border-color: black;
-    border-radius: 20px;
+    border: 1px solid #000000;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     padding-left: 3%;
     padding-right: 3%;
 }
 
 #post { /* FIX: HEIGHT AND WIDTH */
+    width: 60%;
     outline: none;
     display: block;
     margin: 0 auto;
-    margin-top: 5%;
     border-color: black;
-    border-radius: 20px;
     padding: 4%;
     resize: both;
+    border: 1px solid #000000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
 }
 
@@ -124,7 +128,7 @@ h1 {
     border-radius: 25px;
     display: block;
     margin: 0 auto;
-    width: 80%;
+    width: 60%;
     margin-top: 5%;
     background-color: #FFFFFF;
     transition: background-color 1s;
@@ -149,26 +153,93 @@ h1 {
     margin: 0 auto;
 }
 
+
+.editbtn {
+    display: inline-block;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 70px;
+    height: 35px;
+    background-color: #D9D9D9;
+}
+
+.delbtn {
+    display: inline-block;
+    margin: 0 auto;
+    border-radius: 10px;
+    width: 70px;
+    height: 35px;
+    background-color: #D9D9D9;
+}
+
 .userNote {
     display: block;
     margin: 0 auto;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     resize:none;
     width: 75%;
     height: 75%;
+    pointer-events: none;
+    border: 1px solid #000000;
+    background-color:#FFFFFF;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 11px;
+    padding-bottom: 11px;
 
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.36px;
 }
 
 .noteDiv {
-    border: 1px solid black;
+    height: auto;
 }
 
-.editbtn {
+
+.noteHeader {
+    border: 1px solid #000000;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-   
+    margin: 0 auto;
+    resize:none;
+    width: 75%;
+    height: 500%;
+    background-color:#FFFFFF;
+    
+    font-family:Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400px;
+    font-size: 20px;
+    line-height: 36px;
+    text-align: center;
+
+}
+
+.noteFooter {
+    border: 1px solid #000000;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    resize: none;
+    width: 75%;
+    height: 120%;
+    pointer-events: none;
+    background-color:#FFFFFF;
+    padding-left: 5,5px;
+    padding-right: 5,5px;
+    padding-top: 7px;
+
+    font-family:Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.36px;
+    text-align: center;
 }
 
 /* Navbar */
@@ -181,4 +252,3 @@ h1 {
     color: black;
 
 }
-
