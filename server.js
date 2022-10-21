@@ -7,6 +7,8 @@ const Airtable = require('airtable');
 const bcrypt = require('bcrypt');
 
 
+var notesArray = [];
+
 var baseNotes = new Airtable({apiKey: process.env.API_KEY}).base('appe1p4d3ipTDbCef');
 var baseUsers = new Airtable({apiKey: process.env.API_KEY}).base('app3AWTTb59zksQDR');
 
@@ -46,34 +48,40 @@ server.get('/myNotes', (req, res) => {
 server.post('/addUser', (req, res) => {
 
     var userLoginInfo = req.body;
-    
-    bcrypt.hash(userLoginInfo.Password, 10, (err, hash) => {
-        if (err) {
-            console.error(err);
+   
+    baseUsers('users').select({
+        filterByFormula: `Email="${userLoginInfo.Email}"`
+    }).eachPage((records, processNextPage) => {
+        if (records.length > 0) {
+            res.send('Already exists');
             return;
-        };
-
-        baseUsers('users').create([
-
-            {
-                "fields" : {
-                    "Email": userLoginInfo.Email,
-                    "Password": hash
-                }
-            }
-    
-        ], function(err, records) {
+        }
+        bcrypt.hash(userLoginInfo.Password, 10, (err, hash) => {
             if (err) {
                 console.error(err);
                 return;
             };
-        });
+    
+            baseUsers('users').create([
+    
+                {
+                    "fields" : {
+                        "Email": userLoginInfo.Email,
+                        "Password": hash
+                    }
+                }
         
-    });
-
+            ], function(err, records) {
+                if (err) {
+                    console.error(err);
+                    return;
+                };
+            });
+            
+        });
+    }).catch((err) => console.log(err));
+          
 });
-
-var notesArray = [];
 
 
 server.get('/notes', (req, res) => {

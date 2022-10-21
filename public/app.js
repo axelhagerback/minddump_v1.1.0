@@ -28,9 +28,17 @@ createAccount = () => {
     var infoOrder = {Email: email, Password: password};
     userInfo = infoOrder;
 
-    createAccountBox.hidden = true;
 
     const XHR = new XMLHttpRequest();
+
+    XHR.onload = () => {
+        const response = XHR.responseText;
+        console.log(response);
+        if (response == 'Already exists') {
+            const createAccountDiv = document.getElementById('createAccountBox');
+            createAccountDiv.classList.replace('shakeCSS', 'shakeCSS');
+        };
+    };
 
     XHR.open('POST', '/addUser');
     XHR.setRequestHeader('Content-type', 'application/json')
