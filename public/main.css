@@ -57,9 +57,11 @@ h1 {
     
 }
 
-.shakeCss {
+.shakeCSS {
     animation: shake .8s ease-in;
+    border: 5px solid red;
 }
+
 
 @keyframes shake {
     0% {

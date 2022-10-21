@@ -36,8 +36,12 @@ createAccount = () => {
         console.log(response);
         if (response == 'Already exists') {
             const createAccountDiv = document.getElementById('createAccountBox');
-            createAccountDiv.classList.replace('shakeCSS', 'shakeCSS');
-        };
+            if (createAccountDiv != null) {
+                createAccountDiv.classList.add('shakeCSS');
+                createAccountDiv.classList.toggle('shakeCSS');
+                setTimeout(() => (createAccountDiv.classList.toggle('shakeCSS')), 100)
+                setTimeout(() => (createAccountDiv.classList.toggle('shakeCSS')), 800)            }
+            };
     };
 
     XHR.open('POST', '/addUser');
