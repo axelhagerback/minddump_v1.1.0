@@ -1,18 +1,45 @@
-dirHome = () => {
+login = () => {
+    var userInfo;
+
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
+
+    var infoOrder = {Email: email, Password: password};
+    userInfo = infoOrder;
 
     const XHR = new XMLHttpRequest(); 
 
     XHR.onload = () => {
 
         const divContent = document.getElementById('app');
-        divContent.innerHTML = XHR.responseText;
+        const response = XHR.responseText;
+        
+        if (response == 'Wrong') {
+            console.log(response);
+        } else {
+            divContent.innerHTML = response;
+        };
+    };
 
-    }
+    XHR.open('POST', '/home');
+    XHR.setRequestHeader('Content-type', 'application/json')
+    XHR.send(JSON.stringify(userInfo));
+
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
+
+};
+
+dirHome = () => {
+    const XHR = new XMLHttpRequest();
+
+    XHR.onload = () => {
+        const divContent = document.getElementById('app');
+        divContent.innerHTML = XHR.responseText;
+    };
 
     XHR.open('GET', '/home');
     XHR.send();
-
-
 };
  
 formCreateAccount = () => {
