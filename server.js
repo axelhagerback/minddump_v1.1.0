@@ -5,7 +5,9 @@ const fs = require('fs');
 require('dotenv').config()
 const Airtable = require('airtable');
 const bcrypt = require('bcrypt');
+const { base } = require('airtable');
 
+var notesArray = [];
 
 var baseNotes = new Airtable({apiKey: process.env.API_KEY}).base('appe1p4d3ipTDbCef');
 var baseUsers = new Airtable({apiKey: process.env.API_KEY}).base('app3AWTTb59zksQDR');
@@ -46,8 +48,28 @@ server.get('/myNotes', (req, res) => {
 server.post('/addUser', (req, res) => {
 
     var userLoginInfo = req.body;
+   
+    baseUsers('users').select(
+        {
+          maxRecords: 5,
+          view: 'Grid view'
+        }
+      ).firstPage((err, records) =>
+        {
+          if (err) { console.error(err); return;  }
+          records.forEach((record) => {
+              if(record.get('Email') === userLoginInfo.Email)
+              {
+              console.log('Lookup is', record.id);
+              }
+            });
+          });
+    //om email existerar, return email already exists
     
-    bcrypt.hash(userLoginInfo.Password, 10, (err, hash) => {
+    
+    //else kör koden nedan
+
+    /*bcrypt.hash(userLoginInfo.Password, 10, (err, hash) => {
         if (err) {
             console.error(err);
             return;
@@ -69,11 +91,9 @@ server.post('/addUser', (req, res) => {
             };
         });
         
-    });
+    });*/
 
 });
-
-var notesArray = [];
 
 
 server.get('/notes', (req, res) => {
