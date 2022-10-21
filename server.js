@@ -5,7 +5,7 @@ const fs = require('fs');
 require('dotenv').config()
 const Airtable = require('airtable');
 const bcrypt = require('bcrypt');
-const { base } = require('airtable');
+
 
 var notesArray = [];
 
@@ -49,50 +49,38 @@ server.post('/addUser', (req, res) => {
 
     var userLoginInfo = req.body;
    
-    baseUsers('users').select(
-        {
-          maxRecords: 5,
-          view: 'Grid view'
-        }
-      ).firstPage((err, records) =>
-        {
-          if (err) { console.error(err); return;  }
-          records.forEach((record) => {
-              if(record.get('Email') === userLoginInfo.Email)
-              {
-              console.log('Lookup is', record.id);
-              }
-            });
-          });
-    //om email existerar, return email already exists
-    
-    
-    //else kör koden nedan
-
-    /*bcrypt.hash(userLoginInfo.Password, 10, (err, hash) => {
-        if (err) {
-            console.error(err);
+    baseUsers('users').select({
+        filterByFormula: `Email="${userLoginInfo.Email}"`
+    }).eachPage((records, processNextPage) => {
+        if (records.length > 0) {
+            res.send('Already exists');
             return;
-        };
-
-        baseUsers('users').create([
-
-            {
-                "fields" : {
-                    "Email": userLoginInfo.Email,
-                    "Password": hash
-                }
-            }
-    
-        ], function(err, records) {
+        }
+        bcrypt.hash(userLoginInfo.Password, 10, (err, hash) => {
             if (err) {
                 console.error(err);
                 return;
             };
-        });
+    
+            baseUsers('users').create([
+    
+                {
+                    "fields" : {
+                        "Email": userLoginInfo.Email,
+                        "Password": hash
+                    }
+                }
         
-    });*/
-
+            ], function(err, records) {
+                if (err) {
+                    console.error(err);
+                    return;
+                };
+            });
+            
+        });
+    }).catch((err) => console.log(err));
+          
 });
 
 
