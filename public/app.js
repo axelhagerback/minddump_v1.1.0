@@ -40,7 +40,7 @@ createAccount = () => {
                 createAccountDiv.classList.add('shakeCSS');
                 createAccountDiv.classList.toggle('shakeCSS');
                 setTimeout(() => (createAccountDiv.classList.toggle('shakeCSS')), 100)
-                setTimeout(() => (createAccountDiv.classList.toggle('shakeCSS')), 800)            }
+                setTimeout(() => (createAccountDiv.classList.toggle('shakeCSS')), 1500)            }
             };
     };
 
