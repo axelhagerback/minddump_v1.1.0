@@ -18,11 +18,14 @@ login = () => {
     const divContent = document.getElementById("app");
     const response = XHR.responseText;
 
-    if (response == "Wrong") {
-      console.log(response);
-    } else {
-      divContent.innerHTML = response;
-    }
+    if (email.length == 0 || password.length ==0) {
+        alert("No password or Email entered");
+        return false;
+     } if (response == "Wrong") {
+            console.log(response);
+          } else {
+            divContent.innerHTML = response;
+          }  
   };
 
   XHR.open("POST", "/home");
