@@ -1,11 +1,36 @@
 const express = require('express');
+const cookieParser = require("cookie-parser");
+const sessions = require ('express-session');
 const server = express();
-const router = express.Router();
 const fs = require('fs');
 require('dotenv').config()
 const Airtable = require('airtable');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
+const timer = 1000 * 60 * 30;
+
+
+server.use(sessions({
+    secret: process.env.SECRET,
+    saveUninitialized:true,
+    cookie: {maxAge: timer},
+    resave: false
+}));
+
+server.use(express.json());
+server.use(express.urlencoded({extended: true}));
+
+server.use(express.static(__dirname));
+
+server.use(cookieParser());
+
+server.get('/',(req,res) => {
+    session=req.session;
+    if(session.userid){
+        
+    }
+})
 
 var notesArray = [];
 
@@ -15,7 +40,6 @@ var baseUsers = new Airtable({apiKey: process.env.API_KEY}).base('app3AWTTb59zks
 
 server.use(express.static('public'));
 
-server.use(express.json());
 
 server.get('/', (req, res) => {
     fs.readFile('index.html','utf-8', (err, data) => {
