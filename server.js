@@ -108,6 +108,12 @@ server.post('/addUser', (req, res) => {
           
 });
 
+server.post('/createNote', (req, res) => {
+    var noteInfo = req.body;
+    
+    res.send(noteInfo);
+});
+
 
 server.get('/notes', (req, res) => {
     notesArray = [];
