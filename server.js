@@ -25,14 +25,39 @@ server.get('/', (req, res) => {
     });
 }); 
 
-server.get('/home', (req, res) => {
+server.post('/home', (req, res) => {
 
+    var userLoginInfo = req.body;
+
+    baseUsers('users').select({
+      
+        filterByFormula: `Email="${userLoginInfo.Email}"`
+        
+    }).eachPage((records, processNextPage) => {
+            bcrypt.compare(userLoginInfo.Password, records[0].get('Password'), (err, response) => {
+                if (response) {
+                    fs.readFile('home.html', 'utf-8', (err, data) => {
+                        res.writeHead(200, {'Content-Type': 'text/html'});
+                        res.write(data);
+                        res.end();
+                        return;
+                    });
+                } else {
+                res.send('Wrong');
+                return;
+            };
+        });
+    }).catch((err) => console.log(err));
+
+});
+
+
+server.get('/home', (req, res) => {
     fs.readFile('home.html', 'utf-8', (err, data) => {
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         res.end();
     });
-
 });
 
 server.get('/myNotes', (req, res) => {

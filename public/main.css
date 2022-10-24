@@ -58,7 +58,7 @@ h1 {
 }
 
 .shakeCSS {
-    animation: shake .8s ease-in;
+    animation: shake 1.5s ease-in;
     border: 5px solid red;
 }
 
