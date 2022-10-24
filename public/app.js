@@ -79,6 +79,22 @@ createAccount = () => {
     document.getElementById('userPassword').value = '';
 };
 
+create = () => {
+    console.log('create note works')
+
+    /*const XHR = new XMLHttpRequest();
+
+    XHR.onload = () => {
+
+    }
+
+    XHR.open('POST', '/createNote');
+    XHR.send();*/
+};
+
+
+
+
 myNotes = () => {
 
     const XHR = new XMLHttpRequest();
