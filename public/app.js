@@ -62,7 +62,6 @@ createAccount = () => {
 
   XHR.onload = () => {
     const response = XHR.responseText;
-    console.log(response);
     if (response == "Already exists") {
       const createAccountDiv = document.getElementById("createAccountBox");
       if (createAccountDiv != null) {
@@ -92,7 +91,6 @@ create = () => {
 
   XHR.onload = () => {
     const response = XHR.responseText;
-    console.log(response);
   };
 
   XHR.open("POST", "/createNote");
@@ -170,7 +168,7 @@ logout = () => {
     divContent.innerHTML = XHR.responseText;
   };
 
-  XHR.open("GET", "/");
+  XHR.open("GET", "/logout");
   XHR.send();
 };
 

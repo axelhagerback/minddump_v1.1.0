@@ -8,6 +8,7 @@ const Airtable = require("airtable");
 const bcrypt = require("bcrypt");
 const localStrategy = require("passport-local");
 const passport = require("passport");
+const { nextTick } = require("process");
 
 const timer = 1000 * 60 * 30;
 
@@ -204,6 +205,11 @@ server.get("/notes", (req, res) => {
 
       res.send(notesArray);
     });
+});
+
+server.get("/logout", (req, res) => {
+  res.redirect("/");
+  req.logout(() => {});
 });
 
 server.listen(8080);
