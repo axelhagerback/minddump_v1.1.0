@@ -91,6 +91,7 @@ buildNotes = () => {
             const noteFooter = document.createElement('div');
             const editbtn = document.createElement('button');
             const delbtn = document.createElement('button');
+            const btnDiv  = document.createElement('div');
 
 
             noteDiv.setAttribute('class', 'noteDiv');
@@ -99,6 +100,7 @@ buildNotes = () => {
             noteFooter.setAttribute('class', 'noteFooter');
             editbtn.setAttribute('class', 'editbtn');
             delbtn.setAttribute('class', 'delbtn');
+            btnDiv.setAttribute('class', 'btnDiv');
 
             noteHeader.innerHTML = `${note.Title}`;
             noteMain.innerHTML = `${note.Note}`;
@@ -106,12 +108,14 @@ buildNotes = () => {
             editbtn.innerHTML = 'Edit';
             delbtn.innerHTML = 'Delete';
 
+
             noteDiv.append(noteHeader);
             noteDiv.append(noteMain);
             noteDiv.append(noteFooter);
-            noteFooter.append(editbtn);
+            btnDiv.append(editbtn);
             userNotes.append(noteDiv);
-            noteFooter.append(delbtn);
+            btnDiv.append(delbtn);
+            noteFooter.append(btnDiv);
         });
         
     };
