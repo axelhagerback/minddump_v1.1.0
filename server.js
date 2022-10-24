@@ -1,45 +1,29 @@
 const express = require('express');
 const cookieParser = require("cookie-parser");
-const sessions = require ('express-session');
+const session = require ('express-session');
 const server = express();
 const fs = require('fs');
 require('dotenv').config()
 const Airtable = require('airtable');
 const bcrypt = require('bcrypt');
-const session = require('express-session');
 
 const timer = 1000 * 60 * 30;
-
-
-server.use(sessions({
-    secret: process.env.SECRET,
-    saveUninitialized:true,
-    cookie: {maxAge: timer},
-    resave: false
-}));
-
-server.use(express.json());
-server.use(express.urlencoded({extended: true}));
-
-server.use(express.static(__dirname));
-
-server.use(cookieParser());
-
-server.get('/',(req,res) => {
-    session=req.session;
-    if(session.userid){
-        
-    }
-})
 
 var notesArray = [];
 
 var baseNotes = new Airtable({apiKey: process.env.API_KEY}).base('appe1p4d3ipTDbCef');
 var baseUsers = new Airtable({apiKey: process.env.API_KEY}).base('app3AWTTb59zksQDR');
 
-
 server.use(express.static('public'));
-
+server.use(express.json());
+server.use(express.urlencoded({extended: true}));
+server.use(cookieParser());
+server.use(session({
+    secret: process.env.SECRET,
+    saveUninitialized:false,
+    cookie: { maxAge: timer },
+    resave: false
+}));
 
 server.get('/', (req, res) => {
     fs.readFile('index.html','utf-8', (err, data) => {
@@ -51,12 +35,8 @@ server.get('/', (req, res) => {
 
 server.post('/home', (req, res) => {
 
-    var userLoginInfo = req.body;
-
     baseUsers('users').select({
-      
         filterByFormula: `Email="${userLoginInfo.Email}"`
-        
     }).eachPage((records, processNextPage) => {
             bcrypt.compare(userLoginInfo.Password, records[0].get('Password'), (err, response) => {
                 if (response) {
