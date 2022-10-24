@@ -80,16 +80,22 @@ createAccount = () => {
 };
 
 create = () => {
-    console.log('create note works')
 
-    /*const XHR = new XMLHttpRequest();
+    var title = document.getElementById('title').value;
+    var post = document.getElementById('post').value;
+
+    var noteInfo = {Title: title, Post: post};
+
+    const XHR = new XMLHttpRequest();
 
     XHR.onload = () => {
-
+        const response = XHR.responseText;
+        console.log(response);
     }
 
     XHR.open('POST', '/createNote');
-    XHR.send();*/
+    XHR.setRequestHeader('Content-type', 'application/json')
+    XHR.send(JSON.stringify(noteInfo));
 };
 
 
