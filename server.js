@@ -29,7 +29,6 @@ var strategy = new localStrategy((username, password, cb) => {
     })
     .eachPage((records, processNextPage) => {
       if (bcrypt.compareSync(password, records[0].get("Password"))) {
-        console.log("Correct credentials");
       } else {
         return cb(null, false);
       }
@@ -202,27 +201,31 @@ server.post("/createNote", (req, res) => {
 
 server.get("/notes", (req, res) => {
   notesArray = [];
+  var { Email } = userLoginInfo;
+  var userId;
 
-  baseNotes("Notes")
+  baseUsers("users")
     .select({
-      view: "Grid view",
+      filterByFormula: `Email="${Email}"`,
     })
-    .firstPage((err, records) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      records.forEach((record) => {
-        var note = {
-          UserId: record.get("UserId"),
-          Title: record.get("Title"),
-          Note: record.get("Note"),
-          Date: record.get("Date"),
-        };
-        notesArray.push(note);
-      });
-
-      res.send(notesArray);
+    .eachPage((records, fetchNextPage) => {
+      userId = records[0].get("RecordId");
+      baseNotes("notes")
+        .select({
+          filterByFormula: `UserId="${userId}"`,
+        })
+        .eachPage((noteRecords, fetchNextPage) => {
+          noteRecords.forEach((record) => {
+            var note = {
+              UserId: record.get("UserId"),
+              Title: record.get("Title"),
+              Note: record.get("Note"),
+              Date: record.get("Date"),
+            };
+            notesArray.push(note);
+          });
+          res.send(notesArray);
+        });
     });
 });
 
