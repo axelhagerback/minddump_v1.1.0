@@ -15,19 +15,20 @@ login = () => {
   const XHR = new XMLHttpRequest();
 
   XHR.onload = () => {
-    const divContent = document.getElementById("app");
+    const divContent = document.getElementById("body");
     const response = XHR.responseText;
 
-    if (email.length == 0 || password.length ==0) {
-        const noInfo = document.createElement("p");
-        noInfo.innerHTML = "No password or Email has been entered";
-        Bttns.append(noInfo);
-        return false;
-     } if (response == "Wrong") {
-            console.log(response);
-          } else {
-            divContent.innerHTML = response;
-          }  
+    if (email.length == 0 || password.length == 0) {
+      const noInfo = document.createElement("p");
+      noInfo.innerHTML = "No password or Email has been entered";
+      Bttns.append(noInfo);
+      return false;
+    }
+    if (response == "Wrong") {
+      console.log(response);
+    } else {
+      divContent.innerHTML = response;
+    }
   };
 
   XHR.open("POST", "/home");
@@ -42,7 +43,7 @@ dirHome = () => {
   const XHR = new XMLHttpRequest();
 
   XHR.onload = () => {
-    const divContent = document.getElementById("app");
+    const divContent = document.getElementById("body");
     divContent.innerHTML = XHR.responseText;
   };
 
@@ -107,7 +108,7 @@ myNotes = () => {
   const XHR = new XMLHttpRequest();
 
   XHR.onload = () => {
-    const divContent = document.getElementById("app");
+    const divContent = document.getElementById("body");
     divContent.innerHTML = XHR.responseText;
     buildNotes();
   };
@@ -169,7 +170,7 @@ logout = () => {
   const XHR = new XMLHttpRequest();
 
   XHR.onload = () => {
-    const divContent = document.getElementById("app");
+    const divContent = document.getElementById("body");
     divContent.innerHTML = XHR.responseText;
   };
 

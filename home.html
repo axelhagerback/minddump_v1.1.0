@@ -1,29 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <script src="app.js"></script>
+    <title>Mind Dump</title>
+  </head>
+  <body id="body">
     <div id="navbar">
-
-        <nav class="navbar">
-
-            <a class="navbar-brand" onclick="dirHome()">
-                <img src="icons/journal-text.svg" alt="journal icon">
-                Write
-            </a>
-            <a class="navbar-brand" onclick="myNotes()">
-                <img src="icons/archive.svg" alt="archive icon">
-                My Notes
-            </a>
-             
-            </a>
-                <a class="navbar-brand" onclick="logout()">
-                <img src="icons/box-arrow-right.svg">
-            </a>
-        
-        </nav>
-
+      <nav class="navbar">
+        <a class="navbar-brand" onclick="dirHome()">
+          <img src="icons/journal-text.svg" alt="journal icon" />
+          Write
+        </a>
+        <a class="navbar-brand" onclick="myNotes()">
+          <img src="icons/archive.svg" alt="archive icon" />
+          My Notes
+        </a>
+        <a class="navbar-brand" onclick="logout()">
+          <img src="icons/box-arrow-right.svg" />
+        </a>
+      </nav>
     </div>
 
     <div id="writePost">
-    <form method="post">
-        <input type="text" name="Title" id="title" placeholder="Title. . .">
-        <textarea name="Post" id="post" cols="30" rows="10" placeholder="Your note. . ."></textarea>
+      <form method="post">
+        <input type="text" name="Title" id="title" placeholder="Title. . ." />
+        <textarea
+          name="Post"
+          id="post"
+          cols="30"
+          rows="10"
+          placeholder="Your note. . ."
+        ></textarea>
         <button type="button" onclick="create()" id="createNote">Save</button>
-    </form>
-</div>
+      </form>
+    </div>
+  </body>
+</html>
