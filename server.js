@@ -13,6 +13,7 @@ const { nextTick } = require("process");
 const timer = 1000 * 60 * 30;
 
 var notesArray = [];
+var userLoginInfo;
 
 var baseNotes = new Airtable({ apiKey: process.env.API_KEY }).base(
   "appe1p4d3ipTDbCef"
@@ -83,7 +84,7 @@ server.post(
     failureMessage: true,
   }),
   (req, res) => {
-    var userLoginInfo = req.body;
+    userLoginInfo = req.body;
 
     baseUsers("users")
       .select({
@@ -137,18 +138,18 @@ server.get("/myNotes", (req, res) => {
 });
 
 server.post("/addUser", (req, res) => {
-  var userLoginInfo = req.body;
+  var createAccountInfo = req.body;
 
   baseUsers("users")
     .select({
-      filterByFormula: `Email="${userLoginInfo.Email}"`,
+      filterByFormula: `Email="${createAccountInfo.Email}"`,
     })
     .eachPage((records, processNextPage) => {
       if (records.length > 0) {
         res.send("Already exists");
         return;
       }
-      bcrypt.hash(userLoginInfo.Password, 10, (err, hash) => {
+      bcrypt.hash(createAccountInfo.Password, 10, (err, hash) => {
         if (err) {
           console.error(err);
           return;
@@ -158,7 +159,7 @@ server.post("/addUser", (req, res) => {
           [
             {
               fields: {
-                Email: userLoginInfo.Email,
+                Email: createAccountInfo.Email,
                 Password: hash,
               },
             },
@@ -177,8 +178,26 @@ server.post("/addUser", (req, res) => {
 
 server.post("/createNote", (req, res) => {
   var noteInfo = req.body;
+  var { Email } = userLoginInfo;
 
-  res.send(noteInfo);
+  baseUsers("users")
+    .select({
+      filterByFormula: `Email="${Email}"`,
+    })
+    .eachPage((records, fetchNextPage) => {
+      baseNotes("notes")
+        .create([
+          {
+            fields: {
+              UserId: records[0].get("RecordId"),
+              Title: noteInfo.Title,
+              Note: noteInfo.Post,
+            },
+          },
+        ])
+        .catch((err) => console.log(err));
+      return;
+    });
 });
 
 server.get("/notes", (req, res) => {
