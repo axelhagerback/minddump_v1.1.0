@@ -19,7 +19,9 @@ login = () => {
     const response = XHR.responseText;
 
     if (email.length == 0 || password.length ==0) {
-        alert("No password or Email entered");
+        const noInfo = document.createElement("p");
+        noInfo.innerHTML = "No password or Email has been entered";
+        Bttns.append(noInfo);
         return false;
      } if (response == "Wrong") {
             console.log(response);
