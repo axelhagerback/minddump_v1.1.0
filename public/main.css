@@ -1,251 +1,257 @@
 body {
-    background-color: #d9d9d9;
+  background-color: #d9d9d9;
 }
-
 
 /* Log in */
 
 h1 {
-    align-items: center;
-    text-align: center;
-    margin: 10%;
+  align-items: center;
+  text-align: center;
+  margin: 10%;
 }
 
 #loginBox {
-    padding: 3%;
-    background-color: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    width: 80%;
-    margin: 0 auto;
+  padding: 3%;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .formInputs {
-    display: grid;
-    padding: 3%;
+  display: grid;
+  padding: 3%;
 }
 
 .formInputs input {
-    margin-bottom: 5%;
+  margin-bottom: 5%;
 }
 
 .formBtns {
-    display: grid;
-    width: 60%;
-    margin: 0 auto;
-    gap: 20%;
-    margin-bottom: 5%;
+  display: grid;
+  width: 60%;
+  margin: 0 auto;
+  gap: 20%;
+  margin-bottom: 5%;
 }
 
 .formBtns button {
-    background-color: #FFFFFF;
-    border: none;
+  background-color: #ffffff;
+  border: none;
 }
 
 #Bttns {
-    text-align: center;
+  text-align: center;
 }
-
 
 /* Create account */
 
 #createAccountBox {
-    padding: 3%;
-    background-color: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 5%;
-    
+  padding: 3%;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5%;
 }
 
 .shakeCSS {
-    animation: shake 1.5s ease-in;
-    border: 5px solid red;
+  animation: shake 1.5s ease-in;
+  border: 5px solid red;
 }
-
 
 @keyframes shake {
-    0% {
-        transform: translate(0);
-    }
-    20%,
-    40%,
-    60%,
-    80% {
-        transform: translate(.8em);
-        box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5);
-    }
-    10%,
-    30%,
-    50% {
-        transform: translate(-.2em);
-    }
-    70%,
-    100% {
-        transform: translate(0);
-    }
+  0% {
+    transform: translate(0);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate(0.8em);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5);
+  }
+  10%,
+  30%,
+  50% {
+    transform: translate(-0.2em);
+  }
+  70%,
+  100% {
+    transform: translate(0);
+  }
 }
 
+@media screen and (min-width: 600px) {
+  h1 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  #loginBox {
+    width: 479.35px;
+  }
+
+  #createAccountBox {
+    width: 479.35px;
+    margin-top: 30px;
+  }
+}
 
 /* Home */
 
 #writePost {
-    margin: 0 auto;
-    margin-top: 5%;
-    width: 80%;
+  margin: 0 auto;
+  margin-top: 5%;
+  width: 80%;
 }
 
-#title { /* FIX OVERFLOW */
-    outline: none;
-    display: block;
-    margin: 0 auto;
-    margin-top: 5%;
-    width: 60%;
-    border-color: black;
-    border: 1px solid #000000;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding-left: 3%;
-    padding-right: 3%;
+#title {
+  /* FIX OVERFLOW */
+  outline: none;
+  display: block;
+  margin: 0 auto;
+  margin-top: 5%;
+  width: 60%;
+  border-color: black;
+  border: 1px solid #000000;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
-#post { /* FIX: HEIGHT AND WIDTH */
-    width: 60%;
-    outline: none;
-    display: block;
-    margin: 0 auto;
-    border-color: black;
-    padding: 4%;
-    resize: both;
-    border: 1px solid #000000;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-
+#post {
+  /* FIX: HEIGHT AND WIDTH */
+  width: 60%;
+  outline: none;
+  display: block;
+  margin: 0 auto;
+  border-color: black;
+  padding: 4%;
+  resize: both;
+  border: 1px solid #000000;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #createNote {
-    outline: none;
-    border-color: black;
-    border-radius: 25px;
-    display: block;
-    margin: 0 auto;
-    width: 60%;
-    margin-top: 5%;
-    background-color: #FFFFFF;
-    transition: background-color 1s;
+  outline: none;
+  border-color: black;
+  border-radius: 25px;
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  margin-top: 5%;
+  background-color: #ffffff;
+  transition: background-color 1s;
 }
 
 #createNote:focus,
 #createNote:active {
-    background-color: rgb(0, 212, 0);
-    transition: none;
+  background-color: rgb(0, 212, 0);
+  transition: none;
 }
 
 /* User notes */
 
 #userNotes {
-    margin: 0 auto;
-    margin-top: 5%;
-    width: 80%;
+  margin: 0 auto;
+  margin-top: 5%;
+  width: 80%;
 }
 
 #userNote {
-    display: block;
-    margin: 0 auto;
+  display: block;
+  margin: 0 auto;
 }
 
-
 .userNote {
-    display: block;
-    margin: 0 auto;
-    resize:none;
-    width: 75%;
-    height: 75%;
-    pointer-events: none;
-    border: 1px solid #000000;
-    background-color:#FFFFFF;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 11px;
-    padding-bottom: 11px;
+  display: block;
+  margin: 0 auto;
+  resize: none;
+  width: 75%;
+  height: 75%;
+  pointer-events: none;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 11px;
+  padding-bottom: 11px;
 
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19.36px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.36px;
 }
 
 .noteDiv {
-    margin-top: 7%;
-    height: auto;
+  margin-top: 7%;
+  height: auto;
 }
 
-
 .noteHeader {
-    border: 1px solid #000000;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    display: block;
-    margin: 0 auto;
-    resize:none;
-    width: 75%;
-    height: 500%;
-    background-color:#FFFFFF;
-    
-    font-family:Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 400px;
-    font-size: 20px;
-    line-height: 36px;
-    text-align: center;
+  border: 1px solid #000000;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  resize: none;
+  width: 75%;
+  height: 500%;
+  background-color: #ffffff;
 
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400px;
+  font-size: 20px;
+  line-height: 36px;
+  text-align: center;
 }
 
 .noteFooter {
-    border: 1px solid #000000;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    display: block;
-    margin: 0 auto;
-    resize: none;
-    width: 75%;
-    height: 120%;
-    pointer-events: none;
-    background-color:#FFFFFF;
-    padding-left: 5,5px;
-    padding-right: 5,5px;
-    padding-top: 7px;
+  border: 1px solid #000000;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  resize: none;
+  width: 75%;
+  height: 120%;
+  pointer-events: none;
+  background-color: #ffffff;
+  padding-left: 5, 5px;
+  padding-right: 5, 5px;
+  padding-top: 7px;
 
-    font-family:Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19.36px;
-    text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.36px;
+  text-align: center;
 }
 
-
 .btnDiv button {
-    display: inline-block;
-    width: 70px;
-    height: 35px;
-    margin: 0 auto;
-    border-radius: 10px;
-    background-color: #D9D9D9;
-    margin: 0% 3% 0% 3%;
+  display: inline-block;
+  width: 70px;
+  height: 35px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+  margin: 0% 3% 0% 3%;
 }
 
 /* Navbar */
 
 #navbar {
-    background-color: #e97a4e;
+  background-color: #e97a4e;
 }
 
 .navbar a {
-    color: black;
-
+  color: black;
 }
