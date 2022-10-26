@@ -176,7 +176,22 @@ buildNotes = () => {
 };
 
 deleteNote = (noteId) => {
-  console.log("deleted note with id " + noteId);
+  var noteRecordId = { NoteId: noteId };
+
+  const XHR = new XMLHttpRequest();
+
+  XHR.onload = () => {
+    const response = XHR.responseText;
+    if (response == "Success") {
+      console.log("deleted note with id " + noteId);
+    } else {
+      console.log("Something went wrong");
+    }
+  };
+
+  XHR.open("POST", "/deleteNote");
+  XHR.setRequestHeader("Content-type", "application/json");
+  XHR.send(JSON.stringify(noteRecordId));
 };
 editNote = (noteId) => {
   console.log("edited note with id " + noteId);
