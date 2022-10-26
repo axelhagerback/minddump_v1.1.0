@@ -155,6 +155,24 @@ h1 {
   transition: none;
 }
 
+@media screen and (max-width: 600px) {
+  #writePost {
+    width: 288px;
+  }
+
+  #title {
+    width: 100%;
+  }
+
+  #post {
+    width: 100%;
+  }
+
+  #createNote {
+    width: 288px;
+  }
+}
+
 /* User notes */
 
 #userNotes {
@@ -174,7 +192,6 @@ h1 {
   resize: none;
   width: 75%;
   height: 75%;
-  pointer-events: none;
   border: 1px solid #000000;
   background-color: #ffffff;
   padding-left: 15px;
@@ -222,7 +239,6 @@ h1 {
   resize: none;
   width: 75%;
   height: 120%;
-  pointer-events: none;
   background-color: #ffffff;
   padding-left: 5, 5px;
   padding-right: 5, 5px;

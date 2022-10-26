@@ -68,7 +68,7 @@ createAccount = () => {
 
   XHR.onload = () => {
     const response = XHR.responseText;
-    if  (response == "Already exists") {
+    if (response == "Already exists") {
       const createAccountDiv = document.getElementById("createAccountBox");
       if (createAccountDiv != null) {
         createAccountDiv.classList.add("shakeCSS");
@@ -130,13 +130,14 @@ buildNotes = () => {
     userNotes.innerHTML = "";
 
     Notes.forEach((note) => {
-      const noteDiv = document.createElement("div");
-      const noteHeader = document.createElement("div");
-      const noteMain = document.createElement("div");
-      const noteFooter = document.createElement("div");
-      const editbtn = document.createElement("button");
-      const delbtn = document.createElement("button");
-      const btnDiv = document.createElement("div");
+      var noteId = note.RecordId;
+      var noteDiv = document.createElement("div");
+      var noteHeader = document.createElement("div");
+      var noteMain = document.createElement("div");
+      var noteFooter = document.createElement("div");
+      var editbtn = document.createElement("button");
+      var delbtn = document.createElement("button");
+      var btnDiv = document.createElement("div");
 
       noteDiv.setAttribute("class", "noteDiv");
       noteHeader.setAttribute("class", "noteHeader");
@@ -146,11 +147,19 @@ buildNotes = () => {
       delbtn.setAttribute("class", "delbtn");
       btnDiv.setAttribute("class", "btnDiv");
 
-      noteHeader.innerHTML = `${note.Title}`;
-      noteMain.innerHTML = `${note.Note}`;
-      noteFooter.innerHTML = `${note.Date}`;
-      editbtn.innerHTML = "Edit";
-      delbtn.innerHTML = "Delete";
+      editbtn.addEventListener("click", () => {
+        editNote(noteId);
+      });
+
+      delbtn.addEventListener("click", () => {
+        deleteNote(noteId);
+      });
+
+      noteHeader.innerText = `${note.Title}`;
+      noteMain.innerText = `${note.Note}`;
+      noteFooter.innerText = `${note.Date}`;
+      editbtn.innerText = "Edit";
+      delbtn.innerText = "Delete";
 
       noteDiv.append(noteHeader);
       noteDiv.append(noteMain);
@@ -164,6 +173,13 @@ buildNotes = () => {
 
   XHR.open("GET", "/notes");
   XHR.send();
+};
+
+deleteNote = (noteId) => {
+  console.log("deleted note with id " + noteId);
+};
+editNote = (noteId) => {
+  console.log("edited note with id " + noteId);
 };
 
 logout = () => {

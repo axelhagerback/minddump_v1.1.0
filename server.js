@@ -221,6 +221,7 @@ server.get("/notes", (req, res) => {
               Title: record.get("Title"),
               Note: record.get("Note"),
               Date: record.get("Date"),
+              RecordId: record.get("RecordId"),
             };
             notesArray.push(note);
           });
