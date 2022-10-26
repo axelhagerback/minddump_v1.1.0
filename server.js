@@ -233,18 +233,15 @@ server.get("/notes", (req, res) => {
 server.post("/deleteNote", (req, res) => {
   var noteId = req.body;
 
-  noteId.NoteId;
-
   baseNotes("notes").destroy(noteId.NoteId),
     (err, deletedRecords) => {
       if (err) {
         res.send("Wrong");
         return;
-      } else {
-        res.send("Success");
-        return;
       }
     };
+  res.send("Success");
+  return;
 });
 
 server.get("/logout", (req, res) => {

@@ -102,6 +102,9 @@ create = () => {
   XHR.open("POST", "/createNote");
   XHR.setRequestHeader("Content-type", "application/json");
   XHR.send(JSON.stringify(noteInfo));
+
+  document.getElementById("title").value = "";
+  document.getElementById("post").value = "";
 };
 
 myNotes = () => {
@@ -182,8 +185,10 @@ deleteNote = (noteId) => {
 
   XHR.onload = () => {
     const response = XHR.responseText;
+    var userNotes = document.getElementById("userNotes");
+    userNotes.innerText = "";
     if (response == "Success") {
-      console.log("deleted note with id " + noteId);
+      buildNotes();
     } else {
       console.log("Something went wrong");
     }
