@@ -68,7 +68,7 @@ createAccount = () => {
 
   XHR.onload = () => {
     const response = XHR.responseText;
-    if (response == "Already exists") {
+    if  (response == "Already exists") {
       const createAccountDiv = document.getElementById("createAccountBox");
       if (createAccountDiv != null) {
         createAccountDiv.classList.add("shakeCSS");
