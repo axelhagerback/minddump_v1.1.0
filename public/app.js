@@ -214,7 +214,6 @@ editNote = (noteInfo) => {
   const XHR = new XMLHttpRequest();
 
   var noteRecordInfo = {Title: noteInfo.Title, Post: noteInfo.Post, NoteId: noteInfo.NoteId}
-  console.log(noteRecordInfo);
 
   XHR.onload = () => {
     const divContent = document.getElementById("body");

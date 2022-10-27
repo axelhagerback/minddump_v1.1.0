@@ -246,7 +246,6 @@ server.post("/deleteNote", (req, res) => {
 });
 
 server.post("/editNote", (req, res) => {
-
     if (req.user) {
       noteId = {};
       noteInfo = req.body;
@@ -274,7 +273,6 @@ server.post("/saveEdit", (req, res) => {
     .eachPage((records, fetchNextPage) => {
       userId = records[0].get("RecordId")
     });
-
 
     baseNotes("notes").update([
     {

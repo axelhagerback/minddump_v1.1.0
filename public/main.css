@@ -109,7 +109,6 @@ h1 {
 }
 
 #title {
-  /* FIX OVERFLOW */
   outline: none;
   display: block;
   margin: 0 auto;
@@ -124,7 +123,6 @@ h1 {
 }
 
 #post {
-  /* FIX: HEIGHT AND WIDTH */
   width: 60%;
   outline: none;
   display: block;
@@ -137,7 +135,8 @@ h1 {
   border-bottom-right-radius: 10px;
 }
 
-#saveEdit,
+/* #save is id from edit.html */
+#save,
 #createNote{
   outline: none;
   border-color: black;
