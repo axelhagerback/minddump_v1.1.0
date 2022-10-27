@@ -162,8 +162,10 @@ buildNotes = () => {
       delbtn.setAttribute("class", "delbtn");
       btnDiv.setAttribute("class", "btnDiv");
 
+      var noteInfo = {Title: note.Title, Post: note.Note, NoteId: note.RecordId};
+
       editbtn.addEventListener("click", () => {
-        editNote(noteId);
+        editNote(noteInfo);
       });
 
       delbtn.addEventListener("click", () => {
@@ -191,7 +193,7 @@ buildNotes = () => {
 };
 
 deleteNote = (noteId) => {
-  var noteRecordId = { NoteId: noteId };
+  var noteRecordId = {NoteId: noteId };
 
   const XHR = new XMLHttpRequest();
 
@@ -212,25 +214,29 @@ deleteNote = (noteId) => {
 };
 
 /* Bygger upp write sidan när man trycker på edit btn */
-editNote = (noteId) => {
-  var noteRecordId = {NoteId: noteId};
+editNote = (noteInfo) => {
+  console.log(noteInfo);
+  console.log(noteInfo.Title);
+  console.log(noteInfo.Post)
+  console.log(noteInfo.NoteId)
+
 
   const XHR = new XMLHttpRequest();
 
   XHR.onload = () => {
-    const response = XHR.responseText;
-    var userNotes = document.getElementById("userNotes");
-    userNotes.innerText = "";
-    if ( response == "Success") {
-      dirHome();
-    } else {
-      console.log("Something went wrong");
-    }
+    const divContent = document.getElementById("body");
+    divContent.innerHTML = XHR.responseText;
+
+    const title = document.getElementById("title");
+    title.value = noteInfo.Title;
+    
+    const post = document.getElementById("post");
+    post.innerText = noteInfo.Post;
   }
 
-  XHR.open("POST", "/editNote");
+  XHR.open("GET", "/editNote");
   XHR.setRequestHeader("Content-type", "application/json");
-  XHR.send(JSON.stringify(noteRecordId))
+  XHR.send(JSON.stringify(noteInfo))
 };
 
 logout = () => {

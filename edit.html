@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <script src="app.js"></script>
+    <title>Mind Dump</title>
+  </head>
+  <body id="body">
+   
+    <div id="writePost">
+      <form method="post">
+        <input type="text" name="Title" id="title"/>
+        <textarea
+          name="Post"
+          id="post"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button type="button" onclick="saveEdit()" id="saveEdit">Save edit</button>
+      </form>
+    </div>
+  </body>
+</html>

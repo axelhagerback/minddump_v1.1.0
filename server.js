@@ -245,18 +245,30 @@ server.post("/deleteNote", (req, res) => {
   return;
 });
 
-server.post("/editNote", (req, res) => {
-    var noteId = req.body;
+server.get("/editNote", (req, res) => {
+    if (req.user) {
+      fs.readFile("edit.html", "utf-8", (err, data) => {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.write(data);
+        res.end();
+      });
+    } else {
+      res.redirect('/');
+      return;
+    }
+    
+});
 
-    baseNotes("notes").update(noteId.NoteId),
-        (err, editedRecords) => {
-            if (err) {
-                res.send("Wrong");
-                return;
-            }
-        };
-    res.send("Success");
-    return;
+server.post("/editNote", (req, res) => {
+  baseNotes("notes").update(noteInfo.NoteId),
+  (err, editedRecords) => {
+      if (err) {
+          res.send("Wrong");
+          return;
+      }
+  };
+res.send("Success");
+return;
 })
 
 server.get("/logout", (req, res) => {
