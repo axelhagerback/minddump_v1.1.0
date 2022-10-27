@@ -245,6 +245,20 @@ server.post("/deleteNote", (req, res) => {
   return;
 });
 
+server.post("/editNote", (req, res) => {
+    var noteId = req.body;
+
+    baseNotes("notes").update(noteId.NoteId),
+        (err, editedRecords) => {
+            if (err) {
+                res.send("Wrong");
+                return;
+            }
+        };
+    res.send("Success");
+    return;
+})
+
 server.get("/logout", (req, res) => {
   res.redirect("/");
   req.logout(() => {});

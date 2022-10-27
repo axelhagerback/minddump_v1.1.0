@@ -210,8 +210,27 @@ deleteNote = (noteId) => {
   XHR.setRequestHeader("Content-type", "application/json");
   XHR.send(JSON.stringify(noteRecordId));
 };
+
+/* Bygger upp write sidan när man trycker på edit btn */
 editNote = (noteId) => {
-  console.log("edited note with id " + noteId);
+  var noteRecordId = {NoteId: noteId};
+
+  const XHR = new XMLHttpRequest();
+
+  XHR.onload = () => {
+    const response = XHR.responseText;
+    var userNotes = document.getElementById("userNotes");
+    userNotes.innerText = "";
+    if ( response == "Success") {
+      dirHome();
+    } else {
+      console.log("Something went wrong");
+    }
+  }
+
+  XHR.open("POST", "/editNote");
+  XHR.setRequestHeader("Content-type", "application/json");
+  XHR.send(JSON.stringify(noteRecordId))
 };
 
 logout = () => {
