@@ -155,6 +155,15 @@ h1 {
   transition: none;
 }
 
+#success {
+  margin: 0 auto;
+  width: 40%;
+  text-align: center;
+  margin-top: 3%;
+  background-color: #ffffff;
+  border-radius: 25px;
+}
+
 @media screen and (max-width: 600px) {
   #writePost {
     width: 288px;
@@ -170,6 +179,10 @@ h1 {
 
   #createNote {
     width: 288px;
+  }
+
+  #success {
+    width: 240px;
   }
 }
 

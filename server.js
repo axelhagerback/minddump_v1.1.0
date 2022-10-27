@@ -195,6 +195,7 @@ server.post("/createNote", (req, res) => {
           },
         ])
         .catch((err) => console.log(err));
+      res.send("Success");
       return;
     });
 });

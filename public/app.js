@@ -97,6 +97,18 @@ create = () => {
 
   XHR.onload = () => {
     const response = XHR.responseText;
+
+    if (response == "Success") {
+      const divSuccess = document.getElementById("success");
+      setTimeout(() => {
+        divSuccess.style.visibility = "visible";
+      }, 1);
+
+      divSuccess.innerHTML = "Saved!";
+      setTimeout(() => {
+        divSuccess.style.visibility = "hidden";
+      }, 3000);
+    }
   };
 
   XHR.open("POST", "/createNote");
