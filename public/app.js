@@ -135,10 +135,7 @@ myNotes = () => {
 buildNotes = () => {
   const XHR = new XMLHttpRequest();
 
-  //skapa variabel med responsetext
-
   const userNotes = document.getElementById("userNotes");
-  //const indNote = document.getElementById('note');
 
   XHR.onload = () => {
     var Notes = JSON.parse(XHR.responseText);
@@ -213,15 +210,11 @@ deleteNote = (noteId) => {
   XHR.send(JSON.stringify(noteRecordId));
 };
 
-/* Bygger upp write sidan när man trycker på edit btn */
 editNote = (noteInfo) => {
-  console.log(noteInfo);
-  console.log(noteInfo.Title);
-  console.log(noteInfo.Post)
-  console.log(noteInfo.NoteId)
-
-
   const XHR = new XMLHttpRequest();
+
+  var noteRecordInfo = {Title: noteInfo.Title, Post: noteInfo.Post, NoteId: noteInfo.NoteId}
+  console.log(noteRecordInfo);
 
   XHR.onload = () => {
     const divContent = document.getElementById("body");
@@ -234,7 +227,25 @@ editNote = (noteInfo) => {
     post.innerText = noteInfo.Post;
   }
 
-  XHR.open("GET", "/editNote");
+  XHR.open("POST", "/editNote");
+  XHR.setRequestHeader("Content-type", "application/json");
+  XHR.send(JSON.stringify(noteRecordInfo))
+};
+
+saveEdit = () => {
+  const XHR = new XMLHttpRequest();
+
+  var title = document.getElementById("title").value;
+  var post = document.getElementById("post").value;
+
+
+  var noteInfo = { Title: title, Post: post };
+
+  XHR.onload = () => {
+    myNotes();
+  }
+
+  XHR.open("POST", "/saveEdit");
   XHR.setRequestHeader("Content-type", "application/json");
   XHR.send(JSON.stringify(noteInfo))
 };

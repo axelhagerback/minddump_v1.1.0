@@ -8,12 +8,12 @@ const Airtable = require("airtable");
 const bcrypt = require("bcrypt");
 const localStrategy = require("passport-local");
 const passport = require("passport");
-const { nextTick } = require("process");
 
 const timer = 1000 * 60 * 30;
 
 var notesArray = [];
 var userLoginInfo;
+var noteId;
 
 var baseNotes = new Airtable({ apiKey: process.env.API_KEY }).base(
   "appe1p4d3ipTDbCef"
@@ -245,8 +245,12 @@ server.post("/deleteNote", (req, res) => {
   return;
 });
 
-server.get("/editNote", (req, res) => {
+server.post("/editNote", (req, res) => {
+
     if (req.user) {
+      noteId = {};
+      noteInfo = req.body;
+      noteId = noteInfo.NoteId;
       fs.readFile("edit.html", "utf-8", (err, data) => {
         res.writeHead(200, { "Content-Type": "text/html" });
         res.write(data);
@@ -256,20 +260,35 @@ server.get("/editNote", (req, res) => {
       res.redirect('/');
       return;
     }
-    
 });
 
-server.post("/editNote", (req, res) => {
-  baseNotes("notes").update(noteInfo.NoteId),
-  (err, editedRecords) => {
-      if (err) {
-          res.send("Wrong");
-          return;
+server.post("/saveEdit", (req, res) => {
+  var noteInfo = req.body;
+  var { Email } = userLoginInfo;
+  var userId;
+
+  baseUsers("users")
+    .select({
+      filterByFormula: `Email="${Email}"`,
+    })
+    .eachPage((records, fetchNextPage) => {
+      userId = records[0].get("RecordId")
+    });
+
+
+    baseNotes("notes").update([
+    {
+      id: noteId,
+      fields: {
+        UserId: userId,
+        Title: noteInfo.Title,
+        Note: noteInfo.Post
       }
-  };
-res.send("Success");
-return;
-})
+    }
+  ])
+  res.send("Success");
+  return;
+});
 
 server.get("/logout", (req, res) => {
   res.redirect("/");
